@@ -40,7 +40,7 @@
 				</li>
 				<li>
 					<div class="step-header">
-						{{ t('files', 'Target user') }}
+						{{ t('files', 'New owner') }}
 					</div>
 					<input id="files-transfer-user" v-model="uid" type="text">
 				</li>
