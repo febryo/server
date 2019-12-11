@@ -47,16 +47,6 @@
 					:disabled="saving">
 					{{ t('files_sharing', 'Can create') }}
 				</ActionCheckbox>
-
-				<!-- create permission -->
-				<ActionCheckbox
-					ref="canCreate"
-					:checked.sync="canCreate"
-					:value="permissionsCreate"
-					:disabled="saving">
-					{{ t('files_sharing', 'Can create') }}
-				</ActionCheckbox>
-
 				<!-- reshare permission -->
 				<ActionCheckbox
 					ref="canReshare"
@@ -70,20 +60,10 @@
 				<ActionCheckbox
 					ref="canDelete"
 					:checked.sync="canDelete"
-					:value="permissionsShare"
+					:value="permissionsDelete"
 					:disabled="saving">
 					{{ t('files_sharing', 'Can delete') }}
 				</ActionCheckbox>
-
-				<!-- delete permission -->
-				<ActionCheckbox
-					ref="canDelete"
-					:checked.sync="canDelete"
-					:value="permissionsShare"
-					:disabled="saving">
-					{{ t('files_sharing', 'Can delete') }}
-				</ActionCheckbox>
-
 				<!-- expiration date -->
 				<ActionCheckbox :checked.sync="hasExpirationDate"
 					:disabled="config.isDefaultExpireDateEnforced || saving"
@@ -242,7 +222,7 @@ export default {
 		 */
 		canCreate: {
 			get: function() {
-				return this.share.hasUpdatePermission
+				return this.share.hasCreatePermission
 			},
 			set: function(checked) {
 				this.updatePermissions({ isCreateChecked: checked })
@@ -253,7 +233,7 @@ export default {
 		 */
 		canDelete: {
 			get: function() {
-				return this.share.hasUpdatePermission
+				return this.share.hasDeletePermission
 			},
 			set: function(checked) {
 				this.updatePermissions({ isDeleteChecked: checked })
@@ -297,7 +277,7 @@ export default {
 	},
 
 	methods: {
-		updatePermissions({ isEditChecked = this.canEdit, isCreateChecked = this.canCreate, isDeleteChecked = this.canDelete, isCreateChecked, isDeleteChecked, isReshareChecked = this.canReshare } = {}) {
+		updatePermissions({ isEditChecked = this.canEdit, isCreateChecked = this.canCreate, isDeleteChecked = this.canDelete, isReshareChecked = this.canReshare } = {}) {
 			// calc permissions if checked
 			const permissions = this.permissionsRead
 				| (isCreateChecked ? this.permissionsCreate : 0)
