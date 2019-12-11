@@ -435,28 +435,6 @@ export default class Share {
 	}
 
 	/**
-	 * Can the current user CREATE this share ?
-	 *
-	 * @returns {boolean}
-	 * @readonly
-	 * @memberof Share
-	 */
-	get canCreate() {
-		return this.#share.can_create === true
-	}
-
-	/**
-	 * Can the current user CREATE this share ?
-	 *
-	 * @returns {boolean}
-	 * @readonly
-	 * @memberof Share
-	 */
-	get canCreate() {
-		return this.#share.can_create === true
-	}
-
-	/**
 	 * Can the current user DELETE this share ?
 	 *
 	 * @returns {boolean}
